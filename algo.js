@@ -40,3 +40,48 @@ const isPrime = (n) => {
     //if cannot find then return true - it is Prime.
     return true;
   };
+
+
+  // Write a function, uncompress, that takes in a string as an argument. The input string will be formatted into multiple groups according to the following pattern:
+
+  const uncompress = (s) => {
+    // todo
+    let result = '';
+    let num = '';
+    let str = '';
+    
+    //concatenate a resulting string number of times of that character
+    const concat = (str, num) => {
+    let result = '';
+    for(let i = 1; i <= num; i++) {
+      result += str;
+    }
+      return result;
+  };
+    
+    //iterate through string - 
+    for (let i = 0; i < s.length; i++) {
+      //save the letter to another variable, save the parsed number into a variable
+      num = s[i];
+      //condintional to check if there is a digit on the next index
+      while(Number.isInteger(parseInt(s[i+1]))) {
+        console.log('hi')
+        i++;
+        num += s[i];
+      }
+      num = parseInt(num)
+      i++;
+      str = s[i];
+      result += concat(str, num);
+    }
+    
+    return result;
+    
+  };
+  
+  
+  
+  
+  // console.log(uncompress("2c3a1t"))
+
+  
