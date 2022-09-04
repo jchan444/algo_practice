@@ -49,7 +49,7 @@ const isPrime = (n) => {
     let result = '';
     let num = '';
     let str = '';
-    
+
     //concatenate a resulting string number of times of that character
     const concat = (str, num) => {
     let result = '';
@@ -64,12 +64,12 @@ const isPrime = (n) => {
       //save the letter to another variable, save the parsed number into a variable
       num = s[i];
       //condintional to check if there is a digit on the next index
-      while(Number.isInteger(parseInt(s[i+1]))) {
+      while(Number.isInteger(Number(s[i+1]))) {
         console.log('hi')
         i++;
         num += s[i];
       }
-      num = parseInt(num)
+      num = Numnber(num)
       i++;
       str = s[i];
       result += concat(str, num);
