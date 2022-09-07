@@ -85,3 +85,83 @@ const isPrime = (n) => {
   // console.log(uncompress("2c3a1t"))
 
   
+//#4 Compress
+//Write a function, compress, that takes in a string as an argument. 
+//The function should return a compressed version of the string where consecutive occurrences 
+//of the same characters are compressed into the number of occurrences followed by the character. 
+//Single character occurrences should not be changed.
+
+// 'aaa' compresses to '3a'
+// 'cc' compresses to '2c'
+// 't' should remain as 't'
+
+//input: string
+//output: string;
+//function - compress that takes in a string
+//return string
+
+//make a caching object to keep count of the occurances.
+const compress = (str) => {
+  let result = '';
+  let i = 0;
+  let j = 0;
+  let count;
+console.log(str[0])
+//loop through using 2 pointers to check and count.
+while (j <= str.length) {
+  //check if i pointer equals j
+  if(str[i] === str[j]) {
+    j++;
+  } else {
+    count = j - i;
+    if(count === 1) {
+      result += str[i]
+      i = j
+    } else {
+      result += count + str[i]
+      i = j
+    }
+  }
+}
+  return result;
+}
+
+
+//test cases
+console.log(compress('ccaaatsss')) // -> '2c3at3s'
+
+
+//#5 Anagrams
+//Write a function, anagrams, that takes in two strings as arguments. 
+//The function should return a boolean indicating whether or not the strings are anagrams. 
+//Anagrams are strings that contain the same characters, but in any order.
+
+
+//input: string
+//output: boolean;
+
+
+const anagrams = (str1, str2) => {
+  const obj1 = {};
+  const obj2 = {};
+
+  //check lengths to make sure they are the same.
+  if(str1.length !== str2.length) return false;
+
+//create a caching object that keeeps track of letters and their # of occurances
+for(let i = 0; i < str1.length; i++) {
+  obj1[str1[i]] = obj1[str1[i]]++ || 1;
+  obj2[str2[i]] = obj2[str2[i]]++ || 1;
+  // if(obj1[str1[i]]) {
+  //   obj1[str1[i]]++
+  // } else obj1[str1[i]] = 1;
+}
+
+for (let key in obj1) {
+  if(obj1[key] !== obj2[key]) return false;
+}
+
+return true;
+}
+
+console.log(anagrams('restful', 'fluster'))
