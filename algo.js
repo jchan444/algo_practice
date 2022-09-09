@@ -164,4 +164,44 @@ for (let key in obj1) {
 return true;
 }
 
-console.log(anagrams('restful', 'fluster'))
+// console.log(anagrams('restful', 'fluster'))
+
+//#6 most frequent Char
+
+//Write a function, mostFrequentChar, that takes in a string as an argument. 
+//The function should return the most frequent character of the string. 
+//If there are ties, return the character that appears earlier in the string.
+
+// You can assume that the input string is non-empty.
+
+//input: string
+//output:string (frequent char)
+
+
+mostFrequentChar = (str) => {
+const obj = {};
+//create a object that takes each character as a property - Key is how many times it appears.
+for(let i = 0; i < str.length; i++) {
+  obj[str[i]] = obj[str[i]] + 1 || 1
+}
+//initilize a most frequent char variable in which we can iterate through the string and checking if it is greater
+//ensures that the first one will be chosen.
+
+let mostFrequent = 0;
+let result = '';
+
+for(let key in obj) {
+  if(obj[key] > mostFrequent) {
+    mostFrequent = obj[key];
+    result = key
+  }
+}
+
+
+return result;
+}
+
+console.log(mostFrequentChar('bookeeper'))
+console.log(mostFrequentChar('mississippi'))
+
+
