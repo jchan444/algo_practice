@@ -265,5 +265,58 @@ for (let i = 0; i < arr.length; i++) {
 //and then checking to see if the complemment exists in the caching obj as it iterates through.
 }
 
+//#9 intersection
 // console.log(pairProduct([3, 2, 5, 4, 1], 8)); // -> [1, 3]
+
+const intersection = (arr1, arr2) => {
+  const result = [];
+  //includes method - 
+  for (let i = 0; i < arr1.length; i++) {
+    if(arr2.includes(arr1[i])) result.push(arr1[i])
+  }
+
+  return result;
+}
+
+// console.log(intersection([4,2,1,6], [3,6,9,2,10]))// -> [2,6]
+
+
+//#10 pair sort
+//Write a function, fiveSort, that takes in an array of numbers as an argument. 
+//The function should rearrange elements of the array such that all 5s appear at the end. 
+//Your function should perform this operation in-place by mutating the original array. The function should return the array.
+
+//Elements that are not 5 can appear in any order in the output, as long as all 5s are at the end of the array.
+
+//input: array
+//output:array;
+
+const fiveSort = (arr) => {
+//two pointers i & j - i starts in beginning - j starts in the end
+let j = arr.length - 1
+let i = 0
+
+while(i < j) {
+  //if to check index j is 5
+  //if to check index i is not 5
+  //swap - using destructuring assignemnt
+  if(arr[j] === 5) j--;
+    else if (arr[i] === 5) {
+      [arr[i], arr[j]] = [arr[j], arr[i]]
+      i++;
+    } else {
+      i++;
+    }
+}
+
+return arr;
+
+}
+
+//decrement j until it reaches not a 5
+
+
+
+// console.log(fiveSort([12, 5, 1, 5, 12, 7]));
+// // -> [12, 7, 1, 12, 5, 5] 
 
