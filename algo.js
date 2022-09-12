@@ -201,7 +201,69 @@ for(let key in obj) {
 return result;
 }
 
-console.log(mostFrequentChar('bookeeper'))
-console.log(mostFrequentChar('mississippi'))
+// console.log(mostFrequentChar('bookeeper'))
+// console.log(mostFrequentChar('mississippi'))
 
+
+//#7 pair sum
+
+//Write a function, pairSum, that takes in an array and a target sum as arguments. 
+//The function should return an array containing a pair of indices whose elements sum to the given target. The indices returned must be unique.
+
+//Be sure to return the indices, not the elements themselves.
+
+//There is guaranteed to be one such pair that sums to the target.
+
+//
+
+const pairSum = (arr, target) => {
+const obj = {};
+
+//iterate through the array using a for loop
+//brute force for two loops - On^2
+//complement and storing in obj - finding the complement - target - arr[i] - Time complexity is O(n)
+//don't do if statement conditionals without an operator. (ex !== undefined)
+for(let i = 0; i < arr.length; i++) {
+  const complement = target - arr[i];
+  if(obj[complement] !== undefined) return [obj[complement], i]
+  else {
+    obj[arr[i]] = i;
+  }
+ }
+
+
+//check if the complement exists in our obj, if not make one. - if it does exist - then return indecies
+
+
+}
+
+//input: array and target number
+//output: two indexes that contain the two values that equal the sum
+
+// console.log(pairSum([3, 2, 5, 4, 1], 8)); // -> [0, 2]
+
+
+//#8 pair product
+
+
+
+
+const pairProduct = (arr, target) => {
+  const cache = {};
+
+//iterate through the array using a for loop
+for (let i = 0; i < arr.length; i++) {
+  const complement = target / arr[i];
+  
+  if(cache[complement] !== undefined) return [cache[complement], i]
+  else {
+    cache[arr[i]] = i;
+  }
+
+}
+//try for the O(n) - caching the complement in an obj
+//and then checking to see if the complemment exists in the caching obj as it iterates through.
+}
+
+// console.log(pairProduct([3, 2, 5, 4, 1], 8)); // -> [1, 3]
 
