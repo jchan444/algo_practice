@@ -355,24 +355,192 @@ return true;
 //Write a function, longestStreak, that takes in the head of a linked list as an argument. 
 //The function should return the length of the longest consecutive streak of the same value within the list.
 
-const a = new Node(5);
-const b = new Node(5);
-const c = new Node(7);
-const d = new Node(7);
-const e = new Node(7);
-const f = new Node(6);
+// const a = new Node(9);
+// const b = new Node(9);
+// const c = new Node(1);
+// const d = new Node(9);
+// const e = new Node(9);
+// const f = new Node(9);
 
-a.next = b;
-b.next = c;
-c.next = d;
-d.next = e;
-e.next = f;
+// a.next = b;
+// b.next = c;
+// c.next = d;
+// d.next = e;
+// e.next = f;
 
 // 5 -> 5 -> 7 -> 7 -> 7 -> 6
 
+//input: head
+//output: number;
+
 const longestStreak = (head) => {
-    
+
+    if(head === null) return 0;
+
+    let target = head.val;
+    let current = head; //I could compare the target with the value.
+    let count = 0;
+    let max = 0;
+
+    //iterate through nodes until it reaches a null - check to see if the value target is the same - if it is, then it will increment-
+    while(current !== null) {
+        if(target === current.val) {
+            count++;
+            if(count > max) max = count;
+        } else {
+            target = current.val;
+            count = 1;
+        }
+        current = current.next
+    }
+    //if it isn't the same - the count will reset to 1, and the new target reassigned.
+
+    return max;
+
 }
 
+// console.log(longestStreak(a)); // 3
 
-longestStreak(a); // 3
+// #10 remove node
+// Write a function, removeNode, that takes in the head of a linked list and a target value as arguments. 
+// The function should delete the node containing the target value from the linked list and return the head of the resulting linked list. 
+// If the target appears multiple times in the linked list, only remove the first instance of the target in the list.
+
+// const a = new Node("a");
+// const b = new Node("b");
+// const c = new Node("c");
+// const d = new Node("d");
+// const e = new Node("e");
+// const f = new Node("f");
+
+// a.next = b;
+// b.next = c;
+// c.next = d;
+// d.next = e;
+// e.next = f;
+
+// a -> b -> c -> d -> e -> f
+
+//input: head and string
+//output: return head.
+
+//if duplicate - only return first instance.
+
+const removeNode = (head, target) => {
+//initilize a current pointer
+let prev = head;
+let current = head.next;
+//edge case - if head is null - return "does not exist"
+if(head === null) return "does not exist"
+//edge case - first one is target
+if(head.val === target) {
+    head.next = null
+    return current;
+}
+
+//iterate using while loop - base case if head = null;
+while(current !== null) {
+    if(current.val === target) {
+        //found the target
+        prev.next = current.next;
+        current.next = null;
+        return head;
+    }
+    prev = prev.next;
+    current = current.next;
+}
+
+return "does not exist";
+
+}
+
+// console.log(removeNode(a, "c"));
+// a -> b -> d -> e -> f
+
+//#11 Insert node
+
+
+// Write a function, insertNode, that takes in the head of a linked list, a value, and an index. 
+// The function should insert a new node with the value into the list at the specified index. 
+// Consider the head of the linked list as index 0. The function should return the head of the resulting linked list.
+
+// Do this in-place.
+
+// You may assume that the input list is non-empty and the index is not greater than the length of the input list.
+
+// const a = new Node("a");
+// const b = new Node("b");
+// const c = new Node("c");
+// const d = new Node("d");
+
+// a.next = b;
+// b.next = c;
+// c.next = d;
+
+// a -> b -> c -> d
+
+//input: head, value, index
+//output: head after inserting
+
+const insertNode = (head, value, index) => {
+    let targetIndex = 1;
+    let current = head.next;
+    let prev = head;
+
+    //conditional when target is 0
+    if(index === 0) {
+        const newNode = new Node(value);
+        newNode.next = head;
+        return newNode;
+    }
+
+    //iterate through the linked list until the correct index is found.
+    while(current !== null) {
+        //conditional to check if the targetIndex is equal to the passed in index
+        if(targetIndex === index) {
+            const newNode = new Node(value)
+            prev.next = newNode;
+            newNode.next = current;
+            return head;
+        }
+        prev = current;
+        current = current.next;
+        targetIndex++;
+    }
+
+    prev.next = new Node(value)
+    //when reaches index - the previous node to point at new node - the new node to point at current node.
+    //return the resulting linkedlist.
+    return head;
+}
+
+// console.log(insertNode(a, 'x', 5));
+// a -> b -> x -> c -> d
+
+
+// #12 create linkedlist
+// Write a function, createLinkedList, that takes in an array of values as an argument. 
+// The function should create a linked list containing each element of the array as the values of the nodes. 
+// The function should return the head of the linked list.
+
+//input: array
+//output: head of newly created linkedlist
+
+const createLinkedList = (array) => {
+    //est current pointer
+    let current = new Node(null)
+    //est dummy head;
+    let head = current;
+    //iterate through array using for loop
+    for(let i = 0; i < array.length; i++) {
+        current.next = new Node(array[i])
+        current = current.next;
+    }
+    //iteration - create a newnode - and point previous node to new node.
+    //increment current
+    return head.next;
+
+}
+
+console.log(createLinkedList(["h", "e", "y"]));
+// h -> e -> y
