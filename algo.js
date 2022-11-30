@@ -320,3 +320,13 @@ return arr;
 // console.log(fiveSort([12, 5, 1, 5, 12, 7]));
 // // -> [12, 7, 1, 12, 5, 5] 
 
+
+//https://leetcode.com/problems/excel-sheet-column-title/
+var convertToTitle = function(columnNumber) {
+  let ans = '';
+  while(columnNumber >= 1){
+      ans = String.fromCharCode(((columnNumber - 1) % 26) + 65) + ans;
+      columnNumber = (columnNumber - 1)/ 26;
+  }
+  return ans;
+};
