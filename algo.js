@@ -330,3 +330,51 @@ var convertToTitle = function(columnNumber) {
   }
   return ans;
 };
+
+//https://leetcode.com/problems/isomorphic-strings/
+var isIsomorphic = function(s, t) {
+  if (s.length != t.length) return false
+  
+  let m = new Map()
+  
+  for (let i = 0; i < s.length; i++) {
+      if (!m.has(s[i])) m.set(s[i], t[i])
+      else if (m.get(s[i]) != t[i]) return false
+  }
+  return new Set([...m.values()]).size == m.size
+  
+};
+
+
+//https://leetcode.com/problems/length-of-last-word/
+
+var lengthOfLastWord = function(s) {
+  let count = 0;
+  
+  const arr = s.split(' ');
+  console.log(arr)
+  
+  for(let i = arr.length-1; i >= 0; i--) {
+      if(arr[i] !== '') {
+          for(let j = 0; j < arr[i].length; j++) {
+              count++;
+          }
+          break;
+      }
+  }
+  
+  return count;
+};
+
+//https://leetcode.com/problems/binary-tree-paths/
+var binaryTreePaths = function(root) {
+  if(root === null) return [];
+      else if(root.right === null && root.left === null) return [`${root.val}`];
+      else {
+          const left = binaryTreePaths(root.left).map(x => root.val + '->' + x);
+          const right = binaryTreePaths(root.right).map(x => root.val + '->' + x);
+          
+          return [...left, ...right]
+      }
+
+};
