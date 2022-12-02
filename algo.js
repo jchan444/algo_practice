@@ -378,3 +378,69 @@ var binaryTreePaths = function(root) {
       }
 
 };
+
+//https://leetcode.com/problems/island-perimeter/
+var islandPerimeter = function(grid) {
+  let count = 0;
+  
+  for(let row = 0; row < grid.length; row++) {
+      for(let col = 0; col < grid[0].length; col++) {
+          if(grid[row][col] === 1) {
+              count += 4;
+              if(row > 0 && grid[row-1][col] === 1) count--;
+              if(row < grid.length - 1 && grid[row+1][col] === 1) count--;
+              if(grid[row][col+1] === 1) count--;
+              if(grid[row][col-1] === 1) count--;
+          }
+      }
+  }
+  
+  return count;
+  
+};
+
+// https://leetcode.com/problems/reshape-the-matrix/
+var matrixReshape = function(mat, r, c) {
+  let arr = mat.flat();
+  if (r * c != arr.length) return mat;
+   
+ let res = [];
+   
+ while (arr.length) {
+     res.push(arr.splice(0, c));
+ }
+   
+ return res;
+};
+
+//mat - array
+//r = row, c = col
+
+//legal? - size, negative numbers?
+
+
+//https://leetcode.com/problems/valid-parentheses/
+var isValid = function(s) {
+    
+  //stack
+  //hashmap
+  //O(N) space
+  
+  const hashmap = {
+      '(': ')',
+      '{': '}',
+      '[': ']'
+  }
+  
+  const stack = [];
+  
+//for loop to iterate once O(N)
+  for(let i = 0; i < s.length; i++) {
+      //check if the matching bracket is within the stack.
+      //if it doesn't equal- return false;
+      if(hashmap[s[i]] !== undefined) stack.push(hashmap[s[i]])
+          else if(stack.pop() !== s[i]) return false;        
+  }
+  
+  return stack.length === 0
+};
