@@ -533,3 +533,68 @@ var findMaxConsecutiveOnes = function(nums) {
   return max;
   
 };
+
+// https://leetcode.com/problems/reverse-string/solutions/?languageTags=javascript
+var reverseString = function(s) {
+
+  for(let i = 0; i < s.length; i++) {
+      s.splice(i, 0, s.pop())
+  }
+
+  return s;
+  
+};
+
+// https://leetcode.com/problems/first-unique-character-in-a-string/solutions/?languageTags=javascript
+var firstUniqChar = function(s) {
+  const hash = {};
+
+  for(let i = 0; i < s.length; i++) {
+      if(hash[s[i]] !== undefined) hash[s[i]] = -1;
+          else hash[s[i]] = i;
+  }
+  
+  for(let key in hash) {
+      if(hash[key] >= 0) return hash[key];
+  }
+
+  return -1
+};
+
+// https://leetcode.com/problems/find-the-difference/submissions/855792189/
+var findTheDifference = function(s, t) {
+  const hash1 = {};
+  const hash2 = {};
+
+  for(let i = 0; i < s.length; i++) {
+      if(hash1[s[i]] !== undefined) hash1[s[i]]++
+          else hash1[s[i]] = 1;
+  }
+
+  for(let i = 0; i < t.length; i++) {
+      if(hash2[t[i]] !== undefined) hash2[t[i]]++
+          else hash2[t[i]] = 1;
+  }
+
+  for(let key in hash2) {
+      if(hash2[key] !== hash1[key]) return key;
+  }
+};
+
+// https://leetcode.com/problems/fizz-buzz/submissions/855798155/
+var fizzBuzz = function(n) {
+  const res = [];
+  
+  for(let i = 1; i <= n; i++) {
+      if(i % 15 === 0) {
+          res.push(`FizzBuzz`);
+      } else if(i % 3 === 0) {
+          res.push(`Fizz`);
+      } else if(i % 5 === 0) {
+          res.push(`Buzz`);
+      } else {
+          res.push(`${i}`);
+      }
+  }
+  return res;
+};
