@@ -444,3 +444,92 @@ var isValid = function(s) {
   
   return stack.length === 0
 };
+
+// https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/
+var findDisappearedNumbers = function(nums) {
+  let res = [];
+  for (let i = 0; i < nums.length; i++) {
+      let num = Math.abs(nums[i]);
+      let idx = num-1;
+      nums[idx] = Math.abs(nums[idx]) * -1;
+  }
+
+  for (let i = 0; i < nums.length; i++) {
+      if (nums[i] > 0) res.push(i+1);
+  }
+  return res;
+  
+  
+  // Time Complexity: O(N)
+  // Space Complexity: O(1)
+};
+
+// https://leetcode.com/problems/third-maximum-number/
+var thirdMax = function(nums) {
+  let first = -Infinity; //
+  let second = -Infinity; //
+  let third = -Infinity; //
+  
+  const set = new Set(nums);
+  const arr = [...set];
+  
+  for(let i = 0; i < arr.length; i++) {
+      if(arr[i] > first) {
+          third = second;
+          second = first;
+          first = arr[i];
+      } else {
+          if(arr[i] > second) {
+              third = second;
+              second = arr[i];
+          } else {
+              if(arr[i] > third) {
+                  third = arr[i]
+              }
+          }
+      }
+  }
+  
+  return third === -Infinity ? first : third
+  
+};
+
+// https://leetcode.com/problems/assign-cookies/
+var findContentChildren = function(g, s) {
+  let count = 0;
+  let cookieCount = 0;
+  let childCount = 0;
+  
+  g.sort((a, b) => b - a)
+  s.sort((a, b) => b - a)
+
+  while(cookieCount < s.length && childCount < g.length) {
+      if(g[childCount] <= s[cookieCount]) {
+          cookieCount++;
+          childCount++;
+          count++;
+      } else childCount++;
+  }
+  
+  return count;
+};
+ 
+
+// https://leetcode.com/problems/max-consecutive-ones/
+var findMaxConsecutiveOnes = function(nums) {
+  let count = 0;
+  let max = 0;
+  
+  for(let i = 0; i < nums.length; i++) {
+      if(nums[i] === 1) count++
+      if(nums[i] === 0) {
+          max = Math.max(count, max)
+          count = 0;
+      }
+  }
+  
+  max = Math.max(count, max)
+  
+  return max;
+  
+};
