@@ -611,3 +611,52 @@ var moveZeroes = function(nums) {
   return nums;
   
 };
+
+// https://leetcode.com/problems/add-strings/solutions/?languageTags=javascript
+var addStrings = function(num1, num2) {
+  sum = '';
+  len1 = num1.length;
+  len2 = num2.length;
+  carry = 0;
+
+  while(len1 > 0 || len2 > 0 || carry) {
+      num1Digit = +num1.charAt(len1-1);
+      num2Digit = +num2.charAt(len2-1);
+      len1--;
+      len2--;
+      
+      digitTotal = num1Digit + num2Digit + carry;
+      carry = Math.floor(digitTotal / 10);
+      digitToAppend = digitTotal % 10;
+      sum = digitToAppend + sum;
+  } 
+
+  return sum;
+};
+
+//https://leetcode.com/problems/number-of-segments-in-a-string/
+var countSegments = function(s) {
+  if(s === "") return 0;
+
+  const arr = s.split(' ');
+
+  return arr.length;
+};
+
+//splitting the array
+  //returning the length.
+  //filter to take out any empty space elements
+//o(N) space and time
+
+// https://leetcode.com/problems/generate-parentheses/description/
+var generateParenthesis = function(n) {
+  var arr = [];
+    compose(n, n, '');
+    return arr;
+  
+    function compose(left, right, str) {
+      if (!left && !right && str.length) return arr.push(str);
+      if (left) compose(left - 1, right, str + '(');
+      if (right > left) compose(left, right - 1, str + ')');
+    }
+  };
