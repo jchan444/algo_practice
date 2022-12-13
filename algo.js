@@ -660,3 +660,22 @@ var generateParenthesis = function(n) {
       if (right > left) compose(left, right - 1, str + ')');
     }
   };
+
+  // https://leetcode.com/problems/longest-substring-without-repeating-characters/
+  var lengthOfLongestSubstring = function(s) {
+
+    let max = 0;
+    let arr = [];
+
+    for(let i = 0; i < s.length; i++) {
+        if(arr.indexOf(s[i]) === -1) {
+            arr.push(s[i]);
+            if(arr.length > max) max = arr.length;
+        } else {
+            arr = arr.slice(arr.indexOf(s[i]) + 1, arr.length);
+            arr.push(s[i]);
+        }
+    }
+    return max;
+    
+};
