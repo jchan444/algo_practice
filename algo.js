@@ -730,3 +730,47 @@ var mySqrt = function(x) {
 
   return right;
 };
+
+// https://leetcode.com/problems/longest-nice-substring/solutions/1074601/js-brute-force/
+function split (s) {
+s = s.split("");
+  const N = s.length;
+  let max = "";
+
+  for (let i = 0; i < N - 1; i++) {
+    let substr = [s[i]];
+
+    for (let j = i + 1; j < N; j++) {
+      substr.push(s[j]);
+      let isNice = true;
+
+      for (const c of substr) {
+        if (
+          !substr.includes(c.toLowerCase()) ||
+          !substr.includes(c.toUpperCase())
+        ) {
+          isNice = false;
+        }
+      }
+
+      if (isNice && substr.join("").length > max.length) {
+        max = substr.join("");
+      }
+    }
+  }
+
+  return max;
+}
+
+  // https://leetcode.com/problems/substrings-of-size-three-with-distinct-characters/description/
+  var countGoodSubstrings = function(s) {
+    const arr = s.split('');
+    let count = 0;
+
+    for(let i = 0; i < s.length-2; i++) {
+        if(arr[i] !== arr[i+1] && arr[i] !== arr[i+2] && arr[i+1] !== arr[i+2]) {
+            count++;
+        }
+    }
+    return count;
+};
