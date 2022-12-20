@@ -792,3 +792,19 @@ var fizzBuzz = function(n) {
   }
   return res;
 };
+
+
+const pairProducts = (arr, target) => {
+  const cache = {};
+
+//iterate through the array using a for loop
+for (let i = 0; i < arr.length; i++) {
+  const complement = target / arr[i];
+  
+  if(cache[complement] !== undefined) return [cache[complement], i]
+  else {
+    cache[arr[i]] = i;
+  }
+
+}
+} 
