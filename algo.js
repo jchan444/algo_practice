@@ -820,3 +820,20 @@ function isValidSubsequence(array, sequence) {
 
   return seqIdx === sequence.length;
 }
+
+// https://www.algoexpert.io/questions/product-sum
+
+function productSum(array, depth = 1) {
+  // Write your code here.
+  let sum = 0;
+  //[5, 2, [7, -1], 3, [6, [-13, 8], 4]]
+  // 5 + 2 + 2(6) + 3 + 2(6 + 3(-5) + 4))
+  for(let i = 0; i < array.length; i++) {
+    if(Array.isArray(array[i])) 
+      sum += productSum(array[i], depth + 1); 
+        else sum += array[i];
+  }
+
+  return sum * depth;
+  
+}
