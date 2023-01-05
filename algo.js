@@ -808,3 +808,15 @@ for (let i = 0; i < arr.length; i++) {
 
 }
 } 
+
+//https://www.algoexpert.io/questions/validate-subsequence
+function isValidSubsequence(array, sequence) {
+  // Write your code here.
+  let seqIdx = 0;
+
+  for(let arrIdx = 0; arrIdx < array.length; arrIdx++) {
+    if(array[arrIdx] === sequence[seqIdx]) seqIdx++;
+  }
+
+  return seqIdx === sequence.length;
+}
