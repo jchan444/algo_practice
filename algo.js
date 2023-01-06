@@ -837,3 +837,22 @@ function productSum(array, depth = 1) {
   return sum * depth;
   
 }
+
+//https://www.algoexpert.io/questions/remove-duplicates-from-linked-list
+function removeDuplicatesFromLinkedList(linkedList) {
+  // Write your code here.
+  let current = linkedList;
+
+  //keep checking while curent.next !== null;
+  while(current.next !== null) {
+    //checking if the next node is the same as current's value
+    if(current.value === current.next.value) {
+      //deletes node and points current pointer over duplicate
+      current.next = current.next.next;
+    } else 
+      //iterate to next node if no duplicate was found.
+      current = current.next;
+  }
+  
+  return linkedList;
+}
