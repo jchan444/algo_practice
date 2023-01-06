@@ -856,3 +856,24 @@ function removeDuplicatesFromLinkedList(linkedList) {
   
   return linkedList;
 }
+
+// https://www.algoexpert.io/questions/sorted-squared-array
+function sortedSquaredArray(array) {
+  // Write your code here.
+
+  const resultArray = [];
+  let left = 0;
+  let right = array.length - 1;
+
+  while(left <= right) {
+    if(Math.abs(array[left]) > Math.abs(array[right])) {
+      resultArray.unshift(array[left]*array[left])
+      left++;
+    } else {
+      resultArray.unshift(array[right]*array[right])
+      right--;
+    }
+  }
+  
+  return resultArray;
+}
