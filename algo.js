@@ -901,3 +901,23 @@ function tournamentWinner(competitions, results) {
     
   return leader.name;
 } 
+
+
+//https://www.algoexpert.io/questions/caesar-cipher-encryptor
+function caesarCipherEncryptor(string, key) {
+  // Write your code here.
+  let finalString = '';
+
+  for(let letter = 0; letter < string.length; letter++) {
+      //converting string to Unicode and adding 3
+      let newLetter = string.charCodeAt(letter) + key;
+      //Account for anything past 122 (z)
+    while(newLetter > 122) {
+      newLetter = (newLetter % 122) + 96
+    }
+      newLetter = String.fromCharCode(newLetter)
+      finalString = finalString.concat(newLetter);
+    }
+  
+  return finalString;
+  }
