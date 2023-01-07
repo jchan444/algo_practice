@@ -877,3 +877,27 @@ function sortedSquaredArray(array) {
   
   return resultArray;
 }
+
+
+//https://www.algoexpert.io/questions/tournament-winner
+
+function tournamentWinner(competitions, results) {
+  // Write your code here.
+
+  let leader = {name: '', score: -Infinity}
+  const scoreBoard = {};
+
+  for(let match = 0; match < results.length; match++) {
+    if(results[match] === 0) scoreBoard[competitions[match][1]] ? scoreBoard[competitions[match][1]] += 3 : scoreBoard[competitions[match][1]] = 3;
+      else scoreBoard[competitions[match][0]] ? scoreBoard[competitions[match][0]] += 3 : scoreBoard[competitions[match][0]] = 3;
+  }
+
+  for(const team in scoreBoard) {
+    if(scoreBoard[team] > leader.score) {
+      leader.name = team;
+      leader.score = scoreBoard[team];
+    }
+  }
+    
+  return leader.name;
+} 
