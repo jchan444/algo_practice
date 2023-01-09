@@ -921,3 +921,46 @@ function caesarCipherEncryptor(string, key) {
   
   return finalString;
   }
+
+// https://www.algoexpert.io/questions/first-non-repeating-character
+  function firstNonRepeatingCharacter(string) {
+    // Write your code here.
+    if(string === "") return -1
+  
+    const letterBank = {};
+  
+    //iterate through string and input into letter bank - duplicates will be set to false.
+    for(let i = 0; i < string.length; i++) {
+      if(letterBank[string[i]] === undefined) letterBank[string[i]] = i;
+        else letterBank[string[i]] = false;
+    }
+  
+    //iterate thru letterBank - first that isn't false returns index
+    for(let key in letterBank) {
+      if(letterBank[key] !== false) return letterBank[key]
+    }
+    
+    return -1;
+  }
+
+
+  // https://www.algoexpert.io/questions/generate-document
+  function generateDocument(characters, document) {
+    // Write your code here.
+    //first edge case
+    if(characters === "") return true;
+    
+    const wordBank = {};
+  
+    //iterate thru characters to create the wordBank
+    for(let letter of characters) {
+      wordBank[letter] ? wordBank[letter]++ : wordBank[letter] = 1;
+    }
+    //iterate thru document to count each character
+    for(let letter of document) {
+      if(wordBank[letter] === undefined || wordBank[letter] === 0) return false;
+        else wordBank[letter]--;
+  }
+  
+    return true;
+  }
