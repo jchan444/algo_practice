@@ -964,3 +964,36 @@ function caesarCipherEncryptor(string, key) {
   
     return true;
   }
+ 
+  //https://www.algoexpert.io/questions/non-constructible-change
+  function nonConstructibleChange(coins) {
+    // Write your code here.
+    coins.sort((a,b) => a-b);
+    console.log(coins)
+  
+    let currentChangeCreated = 0;
+    for(const coin of coins) {
+      if(coin > currentChangeCreated + 1) return currentChangeCreated + 1;
+  
+      currentChangeCreated += coin;
+    }
+  
+    return currentChangeCreated + 1;
+  }
+
+// https://www.algoexpert.io/questions/semordnilap
+  function semordnilap(words) {
+    // Write your code here.
+    const set = new Set(words);
+    const pairs = [];
+  
+    for(const word of words) {
+      const reverse = word.split('').reverse().join('');
+      if(set.has(reverse) && reverse !== word) {
+        pairs.push([word, reverse]);
+        set.delete(reverse);
+        set.delete(word);
+      }
+    }
+    return pairs;
+  }
