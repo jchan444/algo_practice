@@ -997,3 +997,59 @@ function caesarCipherEncryptor(string, key) {
     }
     return pairs;
   }
+
+  // https://www.algoexpert.io/questions/bubble-sort
+  function bubbleSort(array) {
+    // Write your code here.
+    let isSorted = false;
+    let counter = 0;
+  
+    while(!isSorted) {
+      isSorted = true;
+      for(let i = 0; i < array.length - counter; i++) {
+        if(array[i] > array[i+1]) {
+          isSorted = false;
+          [array[i], array[i+1]] = [array[i+1], array[i]];
+          // sort(i, i + 1, array)
+        }
+      }
+      counter++;
+    }
+  
+    return array;
+    
+  }
+  
+  function sort(i, j, array) {
+    [array[i], array[j]] = [array[j], array[i]]
+  }
+
+  // https://www.algoexpert.io/questions/insertion-sort
+
+  function insertionSort(array) {
+    // Write your code here.
+    for(let i = 1; i < array.length; i++) {
+      let j = i;
+      while(j > 0 && array[j] < array[j-1]) {
+        [array[j], array[j-1]] = [array[j-1], array[j]]
+        j--;
+      }
+    }
+    return array;
+  }
+
+  //https://www.algoexpert.io/questions/selection-sort
+  function selectionSort(array) {
+    // Write your code here.
+    for(let i = 0; i < array.length; i++) {
+      let j = i;
+      let lowest = j;
+      while(j < array.length) {
+        if(array[j] < array[lowest]) lowest = j
+        j++;
+      }
+      [array[i], array[lowest]] = [array[lowest], array[i]]
+    }
+    return array;
+  }
+  
